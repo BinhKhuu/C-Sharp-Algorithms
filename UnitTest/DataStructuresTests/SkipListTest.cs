@@ -1,4 +1,5 @@
-﻿using DataStructures.Lists;
+﻿using System;
+using DataStructures.Lists;
 using Xunit;
 
 namespace UnitTest.DataStructuresTests
@@ -29,6 +30,7 @@ namespace UnitTest.DataStructuresTests
             for (int i = 100; i >= 0; --i)
                 skipList.Add(i);
 
+            Assert.True(skipList.Contains(99) == true);
             Assert.True(skipList.Count == 101);
         }
     }

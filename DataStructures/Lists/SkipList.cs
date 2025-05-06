@@ -114,7 +114,7 @@ namespace DataStructures.Lists
             for (int i = _currentMaxLevel - 1; i >= 0; --i)
             {
                 while (current.Forwards[i] != _firstNode && current.Forwards[i].Value.IsLessThan(item))
-                    current = current.Forwards[i];
+                    current = current.Forwards[i]; 
 
                 toBeUpdated[i] = current;
             }
@@ -218,6 +218,10 @@ namespace DataStructures.Lists
             var current = _firstNode;
 
             // Walk after all the nodes that have values less than the node we are looking for
+            // Loop till failure at next forward step
+            // Forwards for one node can contain forwards for multiple levels this is how it can remember its place in the next level
+            // when a higher level forward fails, store the last successful skip and then use the fowards list but specify
+            // must be sure when inserting that each foward node at a higher level has a reference at the lower level
             for (int i = _currentMaxLevel - 1; i >= 0; --i)
                 while (current.Forwards[i] != _firstNode && current.Forwards[i].Value.IsLessThan(item))
                     current = current.Forwards[i];
